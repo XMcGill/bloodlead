@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Leaflet Map</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
+</head>
+
+<body>
+    <!-- Our web map and content will go here -->
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <div id="map" style="width: 1000px; height: 600px">
+    </div>
+    <script>
+    	var map = L.map('map', {center: [39.981192, -75.155399], zoom: 10});
+    	L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+    	map.doubleClickZoom.disable();
+
+        // add Home point marker
+        var myDataPoint = L.marker([39.939161, -75.162829]).addTo(map);
+        myDataPoint.bindPopup("Home");
+
+        // add Train point marker
+        var myDataPoint = L.marker([39.944902, -75.164607]).addTo(map);
+        myDataPoint.bindPopup("Train");
+
+        // add Coffee point marker
+        var myDataPoint = L.marker([39.980977, -75.153361]).addTo(map);
+        myDataPoint.bindPopup("Coffee");
+
+        // add Class point marker
+        var myDataPoint = L.marker([39.981299, -75.152345]).addTo(map);
+        myDataPoint.bindPopup("Class");
+
+        // create a polyline
+        var myDataLine = L.polyline([[39.939161, -75.162829], 
+				                        [39.944902, -75.164607],
+				                        [39.980977, -75.153361],
+				                        [39.981299, -75.152345],
+				                        ],
+			                            {color: 'red', weight: 5}).addTo(map);
+
+        // Bind popup to line object
+        myDataLine.bindPopup("My Favorite Route");
+
+        // create a polygon of My Favorite Area
+        var myArea = L.polygon([[39.933027, -75.159195],
+			                        [39.939082, -75.158165],
+			                        [39.940049, -75.166298],
+			                        [39.934175, -75.167564]
+			                        ],
+   			                        {color: 'blue', weight: 1}).addTo(map);
+   			 
+        // Bind popup to area object
+        myArea.bindPopup("My Favorite Area");
+
+        // create a polygon of Class Buildings
+                var myArea = L.polygon([[39.981619, -75.151803],
+			                        [39.981718, -75.152930],
+			                        [39.980592, -75.153338],
+			                        [39.980452, -75.152040]
+			                        ],
+   			                        {color: 'blue', weight: 1}).addTo(map);
+   			 
+        // Bind popup to area object
+        myArea.bindPopup("Class Buildings");
+
+    </script>
+</body>
+</html>
